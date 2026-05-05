@@ -294,6 +294,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   position: absolute;
   inset: 0;
   z-index: 0;
+  background-color: var(--color-dark);
 }
 
 .hero__video {
@@ -545,7 +546,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   width: 100%;
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-lg);
-  background-color: var(--color-dark-mid);
+  background-color: #1a1a1a;
 }
 
 .service-block__media--double {
@@ -1273,11 +1274,11 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 }
 
 /* ================================
-   19. MOBILE FIXES (max-width: 767px)
+   19. MOBILE (max-width: 767px)
    ================================ */
 @media (max-width: 767px) {
 
-  /* Reduce horizontal gutters */
+  /* ── Gutters: 16px on all containers ── */
   .header__container,
   .about__container,
   .services__container,
@@ -1296,7 +1297,31 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     padding-right: var(--sp-2);
   }
 
-  /* Hero buttons — stack vertically */
+  /* ── Section vertical rhythm ── */
+  .about,
+  .services,
+  .service-block,
+  .reviews,
+  .certificates,
+  .prices,
+  .contacts {
+    padding-top: var(--sp-6);
+    padding-bottom: var(--sp-6);
+  }
+
+  /* ── Heading scale ── */
+  .about__title,
+  .services__title,
+  .service-block__title,
+  .reviews__title,
+  .certificates__title,
+  .prices__title,
+  .contacts__title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    line-height: 1.25;
+  }
+
+  /* ── Hero ── */
   .hero__actions {
     flex-direction: column;
     align-items: center;
@@ -1306,23 +1331,17 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     max-width: 320px;
   }
 
-  /* Reduce heading sizes */
-  .about__title,
-  .services__title,
-  .service-block__title,
-  .reviews__title,
-  .certificates__title,
-  .prices__title,
-  .contacts__title {
-    font-size: var(--fs-2xl);
+  /* ── Service blocks ── */
+  .service-block__container {
+    gap: var(--sp-4);
   }
 
-  /* Service block double media → single column */
+  /* Keep double-media 2-col but ensure it clips */
   .service-block__media--double {
-    grid-template-columns: 1fr;
+    overflow: hidden;
   }
 
-  /* Service block action buttons → full width */
+  /* Action buttons — full width, stacked */
   .service-block__actions {
     flex-direction: column;
   }
@@ -1331,34 +1350,48 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     justify-content: center;
   }
 
-  /* Hit badge — allow wrapping */
+  /* Hit badge — wrap on small screens */
   .hit-badge {
     flex-wrap: wrap;
   }
 
-  /* Carousel — no overflow bleed */
-  .carousel__viewport {
-    overflow: hidden;
+  /* ── Certificates ── */
+  .certificates__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-2);
     max-width: 100%;
   }
 
-  /* Review screenshot — reserve space, prevent empty white block */
+  .certificates__card {
+    padding: var(--sp-2) var(--sp-2);
+    gap: var(--sp-1);
+  }
+
+  .certificates__card-value {
+    font-size: var(--fs-xl);
+  }
+
+  /* ── Carousel ── */
+  .carousel__viewport {
+    overflow: hidden;
+  }
+
+  /* Review screenshot — aspect ratio prevents empty white space while loading */
   .review-card__screenshot {
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    min-height: 0;
   }
 
-  /* Contacts gap */
+  /* ── Contacts ── */
   .contacts__list {
     gap: var(--sp-3);
   }
 
-  /* Floating CTA — tuck closer to edge on small screens */
+  /* ── Floating CTA ── */
   .floating-cta {
     bottom: var(--sp-2);
     right: var(--sp-2);
     font-size: var(--fs-xs);
-    padding: var(--sp-1) var(--sp-2);
+    padding: 10px var(--sp-2);
   }
 }
