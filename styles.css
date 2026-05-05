@@ -78,6 +78,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -1269,4 +1270,95 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
 
   /* Carousel — 3 slides visible on desktop */
   .carousel__slide { flex: 0 0 calc(33.333% - var(--sp-3) * 2 / 3); }
+}
+
+/* ================================
+   19. MOBILE FIXES (max-width: 767px)
+   ================================ */
+@media (max-width: 767px) {
+
+  /* Reduce horizontal gutters */
+  .header__container,
+  .about__container,
+  .services__container,
+  .service-block__container,
+  .reviews__container,
+  .certificates__container,
+  .prices__container,
+  .contacts__container,
+  .footer__container {
+    padding-left: var(--sp-2);
+    padding-right: var(--sp-2);
+  }
+
+  .hero__content {
+    padding-left: var(--sp-2);
+    padding-right: var(--sp-2);
+  }
+
+  /* Hero buttons — stack vertically */
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero__actions .btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* Reduce heading sizes */
+  .about__title,
+  .services__title,
+  .service-block__title,
+  .reviews__title,
+  .certificates__title,
+  .prices__title,
+  .contacts__title {
+    font-size: var(--fs-2xl);
+  }
+
+  /* Service block double media → single column */
+  .service-block__media--double {
+    grid-template-columns: 1fr;
+  }
+
+  /* Service block action buttons → full width */
+  .service-block__actions {
+    flex-direction: column;
+  }
+  .service-block__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Hit badge — allow wrapping */
+  .hit-badge {
+    flex-wrap: wrap;
+  }
+
+  /* Carousel — no overflow bleed */
+  .carousel__viewport {
+    overflow: hidden;
+    max-width: 100%;
+  }
+
+  /* Review screenshot — reserve space, prevent empty white block */
+  .review-card__screenshot {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    min-height: 0;
+  }
+
+  /* Contacts gap */
+  .contacts__list {
+    gap: var(--sp-3);
+  }
+
+  /* Floating CTA — tuck closer to edge on small screens */
+  .floating-cta {
+    bottom: var(--sp-2);
+    right: var(--sp-2);
+    font-size: var(--fs-xs);
+    padding: var(--sp-1) var(--sp-2);
+  }
 }

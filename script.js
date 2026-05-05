@@ -284,7 +284,7 @@ function initCarousel() {
   }
 
   function getSlideWidth() {
-    return slides[0].getBoundingClientRect().width + parseInt(getComputedStyle(track).gap || '0');
+    return slides[0].getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0);
   }
 
   function goTo(index) {
