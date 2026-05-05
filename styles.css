@@ -88,6 +88,8 @@ body {
   color: var(--color-text);
   background-color: var(--color-cream);
   overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 img, video {
@@ -126,7 +128,6 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   letter-spacing: 0.08em;
   text-transform: uppercase;
   border-radius: 50px;
-  white-space: nowrap;
   cursor: pointer;
   transition:
     background-color var(--t-fast),
@@ -1240,6 +1241,8 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
    ================================ */
 @media (min-width: 768px) {
 
+  .btn { white-space: nowrap; }
+
   .header__nav  { display: flex; }
   .header__cta  { display: inline-flex; }
   .header__burger { display: none; }
@@ -1478,6 +1481,68 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     right: var(--sp-2);
     font-size: var(--fs-xs);
     padding: 10px var(--sp-2);
+  }
+
+  /* ── Предотвращение overflow текста ── */
+
+  /* Заголовки — всегда переносятся */
+  h1, h2, h3, h4,
+  .hero__title,
+  .about__title,
+  .services__title,
+  .service-block__title,
+  .reviews__title,
+  .certificates__title,
+  .prices__title,
+  .contacts__title {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  /* Laser combo цены — уменьшить с 40px до разумного */
+  .laser-combos__price {
+    font-size: var(--fs-2xl);
+  }
+
+  /* Прайс-таблица — убрать nowrap на мобиле, сжать */
+  .prices__table td:last-child {
+    white-space: normal;
+    font-size: var(--fs-sm);
+    padding-left: var(--sp-2);
+    min-width: 72px;
+  }
+  .prices__table td:first-child {
+    font-size: var(--fs-sm);
+  }
+
+  /* Статистика — не дать числам вылезти */
+  .about__stat {
+    overflow: hidden;
+  }
+  .about__stat-number {
+    font-size: 1.625rem;
+    word-break: break-all;
+  }
+
+  /* hit-badge — обязательный перенос */
+  .hit-badge__body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  /* Контакты — длинные ссылки/адреса */
+  .contacts__item-body span,
+  .contacts__item-body a {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Все flex/grid дети — не выходить за родителя */
+  .service-block__content > *,
+  .about__content > * {
+    max-width: 100%;
   }
 }
 
