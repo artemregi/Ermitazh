@@ -1395,3 +1395,170 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     padding: 10px var(--sp-2);
   }
 }
+
+/* ================================
+   20. LUXURY LAYER
+   ================================ */
+
+/* ── Золотая полоска бренда вверху страницы ── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--color-gold-light) 20%,
+    var(--color-gold) 50%,
+    var(--color-gold-light) 80%,
+    transparent 100%
+  );
+  z-index: 200;
+  pointer-events: none;
+}
+
+/* ── Eyebrow: ведущее золотое тире ── */
+.section__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.section__eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--color-gold);
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+/* ── Hero eyebrow: симметричные фланкирующие линии ── */
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.22em;
+}
+.hero__eyebrow::before,
+.hero__eyebrow::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.65;
+  flex-shrink: 0;
+}
+
+/* ── Hero title: editorial-тесный трекинг ── */
+.hero__title {
+  letter-spacing: -0.025em;
+  font-size: clamp(3rem, 7vw, 5.25rem);
+}
+
+/* Декоративная линия под hero-контентом */
+.hero__content::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--color-gold);
+  margin: var(--sp-6) auto 0;
+  opacity: 0.45;
+}
+
+/* ── Кино-оверлей на hero ── */
+.hero__overlay {
+  background: linear-gradient(
+    165deg,
+    rgba(43, 26, 14, 0.90) 0%,
+    rgba(43, 26, 14, 0.62) 45%,
+    rgba(20, 10, 5, 0.48) 100%
+  );
+}
+
+/* ── Тёмные секции: глубина через радиальный градиент ── */
+.about,
+.service-block--dark,
+.reviews,
+.certificates,
+.footer {
+  background-image: radial-gradient(
+    ellipse 120% 80% at 15% 25%,
+    rgba(201, 168, 92, 0.055) 0%,
+    transparent 62%
+  );
+}
+
+/* ── Монументальные цифры статистики ── */
+.about__stat-number {
+  font-size: 2.75rem;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.about__stat {
+  padding: var(--sp-4);
+  gap: 6px;
+}
+
+/* ── Editorial трекинг заголовков ── */
+.about__title,
+.services__title,
+.service-block__title,
+.reviews__title,
+.certificates__title,
+.prices__title,
+.contacts__title {
+  letter-spacing: -0.025em;
+}
+
+/* ── Services: больше воздуха в карточках ── */
+.services__card {
+  padding: var(--sp-5) var(--sp-4);
+}
+.services__card-num {
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  opacity: 0.4;
+}
+.services__card-title {
+  font-size: var(--fs-xl);
+  letter-spacing: -0.01em;
+}
+
+/* ── Кнопки: архитектурный стиль ── */
+.btn {
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 1rem var(--sp-4);
+}
+
+/* ── Reviews title: более крупно ── */
+.reviews__title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+}
+
+/* ── Footer: рафинированный ── */
+.footer__copy {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: var(--fs-xs);
+}
+.footer__address {
+  letter-spacing: 0.04em;
+}
+
+/* ── Desktop: заголовки крупнее ── */
+@media (min-width: 1024px) {
+  .service-block__title {
+    font-size: clamp(2.25rem, 3vw, 3rem);
+  }
+  .about__title {
+    font-size: 3.5rem;
+  }
+}
