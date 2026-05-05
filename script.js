@@ -134,7 +134,7 @@ function initScrollAnimations() {
 // AUTOPLAY VIDEOS — play/pause on viewport
 // ================================
 function initAutoplayVideos() {
-  // Service videos: autoplay muted loop — lazy-load + play when in viewport
+  // Service videos: play when in viewport, pause when offscreen
   const autoVideos = document.querySelectorAll('.service-block__video[autoplay]');
   if (!autoVideos.length) return;
 
@@ -143,20 +143,18 @@ function initAutoplayVideos() {
       entries.forEach(entry => {
         const v = entry.target;
         if (entry.isIntersecting) {
-          // If still unloaded (preload=none), trigger load then play
-          if (v.preload === 'none' || v.readyState === 0) {
-            v.preload = 'auto';
-            v.load();
-            v.addEventListener('canplay', () => v.play().catch(() => {}), { once: true });
-          } else {
+          // Ensure enough data is loaded before playing
+          if (v.readyState >= 3) {
             v.play().catch(() => {});
+          } else {
+            v.addEventListener('canplay', () => v.play().catch(() => {}), { once: true });
           }
         } else {
           v.pause();
         }
       });
     },
-    { threshold: 0.15, rootMargin: '200px' }
+    { threshold: 0.15 }
   );
 
   autoVideos.forEach(v => observer.observe(v));
