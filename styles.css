@@ -1278,7 +1278,7 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
    ================================ */
 @media (max-width: 767px) {
 
-  /* ── Gutters: 16px on all containers ── */
+  /* ── Gutters: 20px ── */
   .header__container,
   .about__container,
   .services__container,
@@ -1287,17 +1287,13 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   .certificates__container,
   .prices__container,
   .contacts__container,
-  .footer__container {
-    padding-left: var(--sp-2);
-    padding-right: var(--sp-2);
-  }
-
+  .footer__container,
   .hero__content {
-    padding-left: var(--sp-2);
-    padding-right: var(--sp-2);
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
-  /* ── Section vertical rhythm ── */
+  /* ── Section padding ── */
   .about,
   .services,
   .service-block,
@@ -1309,6 +1305,32 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     padding-bottom: var(--sp-6);
   }
 
+  /* ── Hero ── */
+  .hero__title {
+    font-size: clamp(2.25rem, 10vw, 3rem);
+    letter-spacing: -0.02em;
+  }
+  .hero__subtitle {
+    font-size: var(--fs-base);
+  }
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  /* Скрываем декоративную линию — слишком много места */
+  .hero__content::after {
+    display: none;
+  }
+
+  /* ── Eyebrow: flex (не inline-flex) на мобиле ── */
+  .section__eyebrow {
+    display: flex;
+  }
+
   /* ── Heading scale ── */
   .about__title,
   .services__title,
@@ -1317,31 +1339,71 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   .certificates__title,
   .prices__title,
   .contacts__title {
-    font-size: clamp(1.5rem, 6vw, 2rem);
-    line-height: 1.25;
+    font-size: clamp(1.6rem, 6.5vw, 2.1rem);
+    line-height: 1.2;
   }
 
-  /* ── Hero ── */
-  .hero__actions {
-    flex-direction: column;
-    align-items: center;
+  /* ── About stats ── */
+  .about__stat-number {
+    font-size: 1.875rem;
   }
-  .hero__actions .btn {
+  .about__stat {
+    padding: var(--sp-3);
+  }
+
+  /* ── Services: одна колонка на мобиле ── */
+  .services__grid {
+    grid-template-columns: 1fr;
+  }
+  /* Сброс всех border-right */
+  .services__card,
+  .services__card:nth-child(even),
+  .services__card:nth-child(3n) {
+    border-right: none;
+  }
+  .services__card {
+    padding: var(--sp-3) 0;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+  }
+  .services__card-num {
+    order: -1;
+    margin-right: var(--sp-2);
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+  .services__card-title {
+    font-size: var(--fs-md);
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .services__card-price {
     width: 100%;
-    max-width: 320px;
+    padding-left: calc(var(--sp-2) + 1.5ch);
+  }
+  .services__card-link {
+    width: 100%;
+    padding-left: calc(var(--sp-2) + 1.5ch);
+    margin-top: 2px;
   }
 
   /* ── Service blocks ── */
   .service-block__container {
-    gap: var(--sp-4);
+    gap: var(--sp-3);
   }
+  /* Видео всегда первым на мобиле */
+  .service-block__media  { order: -1; }
+  .service-block__content { order:  1; }
 
-  /* Keep double-media 2-col but ensure it clips */
+  /* Двойные видео — 2 колонки, но с overflow clip */
   .service-block__media--double {
     overflow: hidden;
   }
 
-  /* Action buttons — full width, stacked */
+  /* Кнопки в блоках услуг — на всю ширину */
   .service-block__actions {
     flex-direction: column;
   }
@@ -1350,9 +1412,16 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     justify-content: center;
   }
 
-  /* Hit badge — wrap on small screens */
+  /* ── Hit badge — wrap ── */
   .hit-badge {
     flex-wrap: wrap;
+  }
+
+  /* ── Кнопки: сброс nowrap на мобиле ── */
+  .btn {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.3;
   }
 
   /* ── Certificates ── */
@@ -1361,12 +1430,10 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     gap: var(--sp-2);
     max-width: 100%;
   }
-
   .certificates__card {
-    padding: var(--sp-2) var(--sp-2);
+    padding: var(--sp-2);
     gap: var(--sp-1);
   }
-
   .certificates__card-value {
     font-size: var(--fs-xl);
   }
@@ -1375,8 +1442,6 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   .carousel__viewport {
     overflow: hidden;
   }
-
-  /* Review screenshot — aspect ratio prevents empty white space while loading */
   .review-card__screenshot {
     aspect-ratio: 16 / 9;
     object-fit: cover;
